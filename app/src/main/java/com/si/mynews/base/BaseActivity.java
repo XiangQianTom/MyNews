@@ -2,7 +2,6 @@ package com.si.mynews.base;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -74,18 +73,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
             mPresenter.detachView();
         mUnBinder.unbind();
         App.getInstance().removeActivity(this);
-    }
-
-    @Override
-    public void useNightMode(boolean isNight) {
-        if (isNight) {
-            AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_NO);
-        }
-        recreate();
     }
 
     protected abstract void initInject();

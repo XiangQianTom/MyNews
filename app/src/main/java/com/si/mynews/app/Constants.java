@@ -13,15 +13,13 @@ public class Constants {
 
     public static final int TYPE_NEWS = 101;
 
-    public static final int TYPE_SETTING = 102;
+    public static final int TYPE_LIKE = 102;
 
-    public static final int TYPE_LIKE = 103;
+    public static final int TYPE_ABOUT = 103;
 
-    public static final int TYPE_ABOUT = 104;
+    public static final int TYPE_JOKE = 104;
 
-    public static final int TYPE_JOKE = 105;
-
-    public static final int TYPE_WECHAT = 106;
+    public static final int TYPE_WECHAT = 105;
 
     //================= KEY ====================
     public static final String KEY_API_JISU = "8b25b99b079c7d2b";
@@ -38,11 +36,10 @@ public class Constants {
 
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
-    public static final String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "si" + File.separator + "GeekNews";
+    public static final String PATH_SDCARD = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "si" + File.separator + "OwnNews";
 
     //================= PREFERENCE ====================
 
-    public static final String SP_NIGHT_MODE = "night_mode";
 
     public static final String SP_NO_IMAGE = "no_image";
 
@@ -57,9 +54,6 @@ public class Constants {
     public static final String SP_MANAGER_POINT = "manager_point";
 
     //================= INTENT ====================
-    public static final String IT_GANK_TYPE = "type";
-
-    public static final String IT_GANK_TYPE_CODE = "type_code";
 
     public static final String IT_DETAIL_TITLE = "title";
 
@@ -77,17 +71,9 @@ public class Constants {
 
     public static final String IT_NEWS_MANAGER = "manager";
 
-    public static final String IT_VTEX_TYPE = "type";
-
-    public static final String IT_VTEX_TOPIC_ID = "id";
-
-    public static final String IT_VTEX_REPLIES_TOP = "top_info";
-
-    public static final String IT_VTEX_NODE_NAME = "node_name";
-
     public static final int TYPE_SCROLL = 1;
     public static final int TYPE_ITEM = 2;
     public static final int TYPE_CARD = 3;
     public static final String NEWSBEAN = "newsbean";
-    public static final String AIDL_SPEAK_OVER = "aidl_speak_over";
+    public static final String TOPNEWSBEAN = "topnewsbean";
 }

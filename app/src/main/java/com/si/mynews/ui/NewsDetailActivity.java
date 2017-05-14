@@ -5,6 +5,8 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import com.si.mynews.app.Constants;
 import com.si.mynews.base.BaseActivity;
 import com.si.mynews.component.ImageLoader;
 import com.si.mynews.model.bean.NewsListBean;
+import com.si.mynews.model.bean.NewsTopListBean;
 import com.si.mynews.util.ShareUtil;
 import com.si.mynews.util.SnackbarUtil;
 import com.si.mynews.util.SystemUtil;
@@ -77,12 +80,23 @@ public class NewsDetailActivity extends BaseActivity {
     protected void initEventAndData() {
         setToolBar(viewToolbar, "");
         NewsListBean.ListBean newsBean = getIntent().getParcelableExtra(Constants.NEWSBEAN);
-        showContent(newsBean);
+        if (null != newsBean) {
+            showNewsContent(newsBean);
+        } else {
+            NewsTopListBean.DataBean topNewsBean = getIntent().getParcelableExtra(Constants.TOPNEWSBEAN);
+            showTopNewsContent(topNewsBean);
+        }
         ivProgress.start();
         WebSettings settings = wvDetailContent.getSettings();
         settings.setAppCacheEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
+        wvDetailContent.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
         if (SystemUtil.isNetworkConnected()) {
             settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         } else {
@@ -144,7 +158,7 @@ public class NewsDetailActivity extends BaseActivity {
         });
     }
 
-    public void showContent(NewsListBean.ListBean listBean) {
+    private void showNewsContent(NewsListBean.ListBean listBean) {
         ivProgress.stop();
         imgUrl = listBean.getPic();
         shareUrl = listBean.getUrl();
@@ -153,6 +167,18 @@ public class NewsDetailActivity extends BaseActivity {
         }
         clpToolbar.setTitle(listBean.getTitle());
         detailBarCopyright.setText(listBean.getSrc());
+        wvDetailContent.loadUrl(listBean.getUrl());
+    }
+
+    private void showTopNewsContent(NewsTopListBean.DataBean listBean) {
+        ivProgress.stop();
+        imgUrl = listBean.getThumbnail_pic_s();
+        shareUrl = listBean.getUrl();
+        if (!isImageShow && isTransitionEnd) {
+            ImageLoader.load(mContext, imgUrl, detailBarImage);
+        }
+        clpToolbar.setTitle(listBean.getTitle());
+        detailBarCopyright.setText(listBean.getAuthor_name());
         wvDetailContent.loadUrl(listBean.getUrl());
     }
 

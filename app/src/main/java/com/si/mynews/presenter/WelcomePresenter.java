@@ -1,8 +1,6 @@
 package com.si.mynews.presenter;
 
 
-import android.util.Log;
-
 import com.si.mynews.base.RxPresenter;
 import com.si.mynews.base.WelcomeContract;
 import com.si.mynews.model.bean.WelcomeBean;
@@ -28,8 +26,6 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
     private static final int COUNT_DOWN_TIME = 2200;
 
     private RetrofitHelper mRetrofitHelper;
-
-    private static final String TAG = WelcomePresenter.class.getSimpleName();
 
     @Inject
     public WelcomePresenter(RetrofitHelper mRetrofitHelper) {

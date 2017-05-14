@@ -40,6 +40,6 @@
             android:background="@color/drawer_item_bg_n"
             app:headerLayout="@layout/view_drawer_header"
             app:itemBackground="@drawable/drawer_item_bg"
-            app:menu="@menu/drawer_menu"></android.support.design.widget.NavigationView>
+            app:menu="@menu/drawer_menu" />
     </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>

@@ -149,14 +149,14 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addNewsTopData(List<NewsTopListBean.DataBean> infos) {
-        this.mTopList = infos;
         if (null != mAdapter) {
+            mAdapter.addNewsTopData(infos);
             mAdapter.notifyDataSetChanged();
         }
     }
 
     public void changeTopPager(int currentCount) {
-        if (mPageType == Constants.TYPE_SCROLL) {
+        if (mPageType == Constants.TYPE_SCROLL && null != topViewPager) {
             topViewPager.setCurrentItem(currentCount);
         }
     }

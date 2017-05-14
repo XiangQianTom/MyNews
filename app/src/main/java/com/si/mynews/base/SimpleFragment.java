@@ -1,4 +1,4 @@
-package com.si.mynews.fragment;
+package com.si.mynews.base;
 
 import android.app.Activity;
 import android.content.Context;
@@ -72,5 +72,6 @@ public abstract class SimpleFragment extends SupportFragment {
     }
 
     protected abstract int getLayoutId();
+
     protected abstract void initEventAndData();
 }

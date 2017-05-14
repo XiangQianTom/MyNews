@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.util.Log;
 
 import com.si.mynews.IMySpeakInterface;
 import com.si.mynews.SpeakTaskCallback;
@@ -28,10 +27,7 @@ public class JokeSpeakService extends Service {
 
         @Override
         public void speakWords(String words, SpeakTaskCallback callback) throws RemoteException {
-            Log.e(TAG, "说话文字\t" + words);
-
             SpeechSynthesizerTask.getInstance().setSpeakEndListener(callback);
-
             SpeechSynthesizerTask.getInstance().startSynthesizer(words);
         }
 

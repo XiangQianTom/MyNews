@@ -1,6 +1,8 @@
 package com.si.mynews.fragment;
 
 
+import com.si.mynews.base.SimpleFragment;
+
 import si.mynews.R;
 
 /**

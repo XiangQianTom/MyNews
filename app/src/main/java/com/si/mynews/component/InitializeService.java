@@ -4,14 +4,10 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
 
-import com.github.moduth.blockcanary.BlockCanary;
-import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.orhanobut.logger.Logger;
-import com.si.mynews.app.App;
 import com.si.mynews.app.Constants;
-import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsListener;
@@ -53,11 +49,11 @@ public class InitializeService extends IntentService {
         initBugly();
 
         //初始化内存泄漏检测
-        LeakCanary.install(App.getInstance());
+//        LeakCanary.install(App.getInstance());
 
         //初始化过度绘制检测
-        BlockCanary.install(getApplicationContext(), new BlockCanaryContext()).start();
-        BlockCanary.install(getApplicationContext(), new BlockCanaryContext()).upload();
+//        BlockCanary.install(getApplicationContext(), new BlockCanaryContext()).start();
+//        BlockCanary.install(getApplicationContext(), new BlockCanaryContext()).upload();
 
         //初始化tbs x5 webview
         initX5WebView();
@@ -76,14 +72,10 @@ public class InitializeService extends IntentService {
 
             @Override
             public void onViewInitFinished(boolean arg0) {
-                // TODO Auto-generated method stub
-                Log.e("app", " onViewInitFinished is " + arg0);
             }
 
             @Override
             public void onCoreInitFinished() {
-                // TODO Auto-generated method stub
-
             }
         };
         QbSdk.setTbsListener(new TbsListener() {
@@ -94,12 +86,10 @@ public class InitializeService extends IntentService {
 
             @Override
             public void onInstallFinish(int i) {
-                Log.d("app", "onInstallFinish");
             }
 
             @Override
             public void onDownloadProgress(int i) {
-                Log.d("app", "onDownloadProgress:" + i);
             }
         });
         QbSdk.initX5Environment(getApplicationContext(), cb);

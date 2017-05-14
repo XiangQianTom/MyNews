@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.si.mynews.app.Constants;
 import com.si.mynews.component.ImageLoader;
 import com.si.mynews.model.bean.NewsTopListBean;
 import com.si.mynews.ui.NewsDetailActivity;
@@ -20,7 +21,7 @@ import si.mynews.R;
  * Created by si on 16/8/13.
  */
 
-public class TopPagerAdapter extends MyBasePageAdapter {
+public class TopPagerAdapter extends BasePageAdapter {
 
     public TopPagerAdapter(Context context, List<?> mList) {
         super(context, mList);
@@ -37,7 +38,7 @@ public class TopPagerAdapter extends MyBasePageAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container,int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
         final NewsTopListBean.DataBean newsBean = (NewsTopListBean.DataBean) mList.get(position);
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_top_pager, container, false);
         ImageView ivImage = (ImageView) view.findViewById(R.id.iv_top_image);
@@ -49,7 +50,7 @@ public class TopPagerAdapter extends MyBasePageAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(mContext, NewsDetailActivity.class);
-                intent.putExtra("news_data", newsBean);
+                intent.putExtra(Constants.TOPNEWSBEAN, newsBean);
                 mContext.startActivity(intent);
             }
         });
@@ -60,5 +61,9 @@ public class TopPagerAdapter extends MyBasePageAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+
+    public void addNewsTopData(List<NewsTopListBean.DataBean> infos) {
+        mList = infos;
     }
 }

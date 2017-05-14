@@ -90,9 +90,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                     case R.id.drawer_joke:
                         showFragment = Constants.TYPE_JOKE;
                         break;
-                    case R.id.drawer_setting:
-                        showFragment = Constants.TYPE_SETTING;
-                        break;
                     case R.id.drawer_like:
                         showFragment = Constants.TYPE_LIKE;
                         break;

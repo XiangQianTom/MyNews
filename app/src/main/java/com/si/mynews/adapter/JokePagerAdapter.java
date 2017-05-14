@@ -16,7 +16,7 @@ import si.mynews.R;
  * Created by si on 16/8/13.
  */
 
-public class JokePagerAdapter extends MyBasePageAdapter {
+public class JokePagerAdapter extends BasePageAdapter {
 
     private LastJokeListener lastJokeListener;
     private int lastJokeNum = 2;

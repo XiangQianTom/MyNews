@@ -12,12 +12,12 @@ import java.util.List;
  * Created by si on 16/8/13.
  */
 
-public class MyBasePageAdapter extends PagerAdapter {
+public class BasePageAdapter extends PagerAdapter {
 
     protected List<?> mList = new ArrayList<>();
     protected Context mContext;
 
-    public MyBasePageAdapter(Context context, List<?> mList) {
+    public BasePageAdapter(Context context, List<?> mList) {
         this.mList = mList;
         this.mContext = context;
     }

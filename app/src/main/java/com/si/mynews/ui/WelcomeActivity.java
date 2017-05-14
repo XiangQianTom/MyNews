@@ -59,7 +59,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     public void showContent(WelcomeBean welcomeBean) {
         ImageLoader.load(this, welcomeBean.getImg(), ivWelcomeBg);
         ivWelcomeBg.animate().scaleX(1.12f).scaleY(1.12f).setDuration(2000).setStartDelay(100).start();
-        tvWelcomeAuthor.setText(welcomeBean.getText());
+        tvWelcomeAuthor.setText("Own News");
     }
 
     @Override

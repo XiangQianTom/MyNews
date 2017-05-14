@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,8 @@ public class JokeFragment extends BaseFragment<JokePresenter> implements JokeCon
     @BindView(R.id.vp_joke)
     ViewPager mViewPager;
     Unbinder unbinder;
+    @BindView(R.id.fab_joke)
+    FloatingActionButton mFabJoke;
     private List<JokeListBean.ListBean> mList = new ArrayList<>();
     private JokePagerAdapter mAdapter;
     private IMySpeakInterface mSpeakInterface;
@@ -54,12 +57,6 @@ public class JokeFragment extends BaseFragment<JokePresenter> implements JokeCon
 
     @Override
     protected void initEventAndData() {
-        Intent intent = new Intent(mContext, JokeSpeakService.class);
-        if (!App.isAlive(JokeSpeakService.class)) {
-            mContext.startService(intent);
-        }
-        mContext.bindService(intent, serviceConnection, 0);
-
         mViewPager.setPageTransformer(true, new RotateDownPageTransformer());
         mAdapter = new JokePagerAdapter(mContext, mList);
 
@@ -118,9 +115,14 @@ public class JokeFragment extends BaseFragment<JokePresenter> implements JokeCon
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+
+        Intent intent = new Intent(mContext, JokeSpeakService.class);
+        if (!App.isAlive(JokeSpeakService.class)) {
+            mContext.startService(intent);
+        }
+        mContext.bindService(intent, serviceConnection, 0);
         return rootView;
     }
 
@@ -162,8 +164,10 @@ public class JokeFragment extends BaseFragment<JokePresenter> implements JokeCon
     public void startSpeak() {
         isStopSpeak = !isStopSpeak;
         if (!isStopSpeak) {
+            mFabJoke.setImageResource(R.mipmap.ic_btn_voice_pause);
             doAutoSpeak();
         } else {
+            mFabJoke.setImageResource(R.mipmap.ic_btn_voice_start);
             try {
                 mSpeakInterface.stopWords();
             } catch (RemoteException e) {

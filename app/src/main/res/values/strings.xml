@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyNews</string>
+    <string name="app_name">Own News</string>
     <string name="drawer_group_content">资讯</string>
     <string name="drawer_group_options">选项</string>
     <string name="drawer_collection">收藏</string>

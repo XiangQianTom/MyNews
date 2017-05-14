@@ -89,7 +89,6 @@ public class NewsPresenter extends RxPresenter<NewsContract.View> implements New
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Log.e(TAG, "getNewsData\t" + throwable.getMessage());
                         mView.showError("数据加载失败ヽ(≧Д≦)ノ");
                     }
                 });

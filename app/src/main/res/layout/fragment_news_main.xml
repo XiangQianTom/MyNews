@@ -24,6 +24,7 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:visibility="gone"
             android:src="@mipmap/ic_menu" />
     </LinearLayout>
 
