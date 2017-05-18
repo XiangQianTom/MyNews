@@ -11,6 +11,7 @@ import com.si.mynews.presenter.WechatPresenter;
 import com.si.mynews.presenter.contract.WechatContract;
 import com.si.mynews.util.SnackbarUtil;
 import com.si.mynews.widget.ProgressImageView;
+import com.si.mynews.widget.WrapContentLinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class WechatMainFragment extends BaseFragment<WechatPresenter> implements
     protected void initEventAndData() {
         mList = new ArrayList<>();
         mAdapter = new WechatAdapter(mContext,mList);
-        rvWechatList.setLayoutManager(new LinearLayoutManager(mContext));
+        rvWechatList.setLayoutManager(new WrapContentLinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         rvWechatList.setAdapter(mAdapter);
         rvWechatList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

@@ -14,6 +14,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        ndk {
+            abiFilters"armeabi","armeabi-v7a","x86","mips"
+        }
     }
     buildTypes {
         release {
@@ -73,6 +76,6 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     compile 'javax.annotation:javax.annotation-api:1.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
-    compile files('libs/Msc.jar')
     compile files('libs/nineoldandroids-2.4.0.jar')
+    compile files('libs/Msc.jar')
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.si.mynews.adapter.NewsListAdapter;
@@ -18,6 +19,7 @@ import com.si.mynews.ui.NewsDetailActivity;
 import com.si.mynews.util.SnackbarUtil;
 import com.si.mynews.widget.NewsItemDecoration;
 import com.si.mynews.widget.ProgressImageView;
+import com.si.mynews.widget.WrapContentLinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +75,7 @@ public class NewsPagerFragment extends BaseFragment<NewsPresenter> implements Ne
                 mContext.startActivity(intent, options.toBundle());
             }
         });
-        rvNewsList.setLayoutManager(new LinearLayoutManager(mContext));
+        rvNewsList.setLayoutManager(new WrapContentLinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         rvNewsList.setAdapter(mAdapter);
         mDecoration = new NewsItemDecoration();
         rvNewsList.addItemDecoration(mDecoration);
@@ -106,6 +108,7 @@ public class NewsPagerFragment extends BaseFragment<NewsPresenter> implements Ne
 
     @Override
     public void showContent(List<NewsListBean.ListBean> beanList) {
+        Log.e("11111111","showContent\t"+beanList.size());
         if (swipeRefresh.isRefreshing()) {
             swipeRefresh.setRefreshing(false);
         } else {
@@ -117,6 +120,7 @@ public class NewsPagerFragment extends BaseFragment<NewsPresenter> implements Ne
     }
 
     public void showTopContent(List<NewsTopListBean.DataBean> newsTopListBean) {
+        Log.e("11111111","showTopContent\t"+newsTopListBean.size());
         mAdapter.addNewsTopData(newsTopListBean);
         mPresenter.stopInterval();
         mPresenter.startInterval();

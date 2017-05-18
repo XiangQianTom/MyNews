@@ -79,7 +79,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE.ITEM_TOP.ordinal()) {
-            mAdapter = new TopPagerAdapter(mContext, mTopList);
+            if (null == mAdapter)
+                mAdapter = new TopPagerAdapter(mContext, mTopList);
             return new TopViewHolder(inflater.inflate(R.layout.item_top, parent, false));
         }
         return new ContentViewHolder(inflater.inflate(R.layout.item_news, parent, false));
@@ -149,10 +150,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addNewsTopData(List<NewsTopListBean.DataBean> infos) {
-        if (null != mAdapter) {
-            mAdapter.addNewsTopData(infos);
-            mAdapter.notifyDataSetChanged();
+        mTopList=infos;
+        if (null == mAdapter) {
+            mAdapter = new TopPagerAdapter(mContext, mTopList);
+        } else {
+            mAdapter.addNewsTopData(mTopList);
         }
+        mAdapter.notifyDataSetChanged();
     }
 
     public void changeTopPager(int currentCount) {

@@ -13,6 +13,7 @@ import com.si.mynews.presenter.contract.LikeContract;
 import com.si.mynews.util.SharedPreferenceUtil;
 import com.si.mynews.util.SnackbarUtil;
 import com.si.mynews.widget.DefaultItemTouchHelpCallback;
+import com.si.mynews.widget.WrapContentLinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +48,7 @@ public class LikeFragment extends BaseFragment<LikePresenter> implements LikeCon
     @Override
     protected void initEventAndData() {
         mAdapter = new LikeAdapter(mContext, mList);
-        rvLikeList.setLayoutManager(new LinearLayoutManager(mContext));
+        rvLikeList.setLayoutManager(new WrapContentLinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         rvLikeList.setAdapter(mAdapter);
         mCallback = new DefaultItemTouchHelpCallback(new DefaultItemTouchHelpCallback.OnItemTouchCallbackListener() {
             @Override

@@ -27,12 +27,10 @@ import rx.functions.Action1;
 public class NewsPresenter extends RxPresenter<NewsContract.View> implements NewsContract.Presenter {
 
     private static final int NUM_EACH_PAGE = 20;
-    private static final int NUM_HOT_LIMIT = 3;
     private static final String TAG = NewsPresenter.class.getSimpleName();
 
     private RetrofitHelper mRetrofitHelper;
     private List<NewsListBean.ListBean> totalList = new ArrayList<>();
-    private boolean isHotList = true;
     private int currentPage = 0;
     private String mType;
     private static final int INTERVAL_INSTANCE = 6;
